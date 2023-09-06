@@ -12,7 +12,7 @@
       state: installed
   - name: start and enable mongodb
     ansible.builtin.service:
-      name: mongodb-org
+      name: mongodb
       state: started
       enabled: yes
   - name: enable remote connections to mongodb
@@ -22,7 +22,7 @@
       replace: '0.0.0.0'
   - name: restart ansible module
     ansible.builtin.service:
-      name: mongodb-org
+      name: mongodb
       state: restarted
 
 
