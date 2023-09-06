@@ -4,3 +4,19 @@
   tasks:
   - name: setup npm source
     ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+
+  - name: install nodejs
+    ansible.builtin.yum:
+      name: nodejs
+      state: installed
+
+  - name: check username exit or not
+    ansible.builtin.command: id robhoshop
+    register: output  #output is variable
+    ignore_errors: true
+    when: output.rc != 0        ##when condition in ansible: if the expression is true then only it run the ansible module 
+
+  - name: create user robhoshop
+    ansible.builtin.user:         #user module
+      name: robhoshop
+
