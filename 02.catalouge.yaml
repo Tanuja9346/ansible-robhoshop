@@ -15,8 +15,8 @@
     register: output  #output is variable
     ignore_errors: true
     
-    when: output.rc != 0        ##when condition in ansible: if the expression is true then only it run the ansible module 
-  - name: create user robhoshop
+  - when: output.rc != 0        ##when condition in ansible: if the expression is true then only it run the ansible module 
+    name: create user robhoshop
     ansible.builtin.user:         #user module
       name: robhoshop
 
