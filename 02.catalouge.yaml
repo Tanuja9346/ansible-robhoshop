@@ -35,6 +35,13 @@
       path: /app
       state: directory
 
+    - name: Download foo.conf
+      ansible.builtin.get_url:
+        url: https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+        dest: /tmp
+        
+
+
 
   
 
