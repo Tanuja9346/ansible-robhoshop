@@ -56,7 +56,7 @@
       src: catalouge.service
       dest: /etc/systemd/system/catalogue.service
 
-  - name: daemon reloaded
+  - name: daemon reload
     ansible.builtin.systemd:
       daemon_reload: true
 
@@ -73,7 +73,7 @@
   - name: load catalogue data
     ansible.builtin.shell: mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
     
-  - name: restart and enable catalogue
+  - name: restart catalogue
     ansible.builtin.service:
       name: catalogue
       state: restarted
