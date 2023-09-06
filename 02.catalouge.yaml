@@ -71,13 +71,13 @@
       state: installed
 
   - name: load catalouge data 
-    ansible.builtin.command:  mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
+    ansible.builtin.command: mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
 
   - name: restart catalouge
     ansible.builtin.service:
       name: catalogue
       state: restarted
-      enabled: yes
+      enabled: true
 
      
 
