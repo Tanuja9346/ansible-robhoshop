@@ -20,3 +20,13 @@
     ansible.builtin.user:         #user module
       name: robhoshop
 
+  - name:  check app directory exit or not
+    ansible.builtin.stat:
+      path: /app
+    register: directory
+
+  - name: print the directory stats
+    ansible.builtin.debug:
+      msg: "{{directory}}"
+      
+
