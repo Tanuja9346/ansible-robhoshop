@@ -44,13 +44,50 @@
     ansible.builtin.unarchive:
       src: /tmp/catalogue.zip
       dest: /app
-      remote_src: yes
+      remote_src: yes       ##remote avaialbe artifact
 
   - name: install dependenices
     ansible.builtin.command: npm install
     args:
        chdir: /app
-       
+
+  - name: copy catalouge service
+    ansible.builtin.copy:
+      src: catalouge.service
+      dest: /etc/systemd/system/catalogue.service
+
+  - name: daemon reloaded
+    ansible.builtin.systemd:
+    daemon_reload: true
+
+  - name: copy mongo repo to yum.repo.d
+    ansible.builtin.copy:
+      src: mongodb.repo
+      dest: /etc/yum.repos.d/mongo.repo
+
+  - name: install mongodb-org        #client side thind and load schema u need to do mongodb install and repo .
+    ansible.builtin.yum:
+      name: mongodb-org
+      state: installed
+
+ - name: load catalouge data 
+   ansible.builtin.command:  mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
+
+   - name: start and enable catalouge
+     ansible.builtin.service:
+       name: catalogue
+       state: started
+       enabled: yes
+
+     
+
+
+
+
+
+
+    
+
 
 
   
