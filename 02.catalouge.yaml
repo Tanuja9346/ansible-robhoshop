@@ -53,7 +53,7 @@
 
   - name: copy catalouge service
     ansible.builtin.copy:
-      src: catalouge.service
+      src: catalogue.service
       dest: /etc/systemd/system/catalogue.service
 
   - name: daemon reloaded
@@ -70,10 +70,10 @@
       name: mongodb-org
       state: installed
 
-  - name: load catalouge data 
+  - name: load catalogue data 
     ansible.builtin.command: mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
 
-  - name: restart catalouge
+  - name: restart catalogue
     ansible.builtin.service:
       name: catalogue
       state: restarted
