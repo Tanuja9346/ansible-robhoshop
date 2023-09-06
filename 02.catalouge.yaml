@@ -70,14 +70,14 @@
       name: mongodb-org
       state: installed
 
- - name: load catalouge data 
-   ansible.builtin.command:  mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
+  - name: load catalouge data 
+    ansible.builtin.command:  mongo --host mongodb.joindevops.xyz < /app/schema/catalogue.js
 
- - name: start and enable catalouge
-   ansible.builtin.service:
-     name: catalogue
-     state: started
-     enabled: yes
+  - name: start and enable catalouge
+    ansible.builtin.service:
+      name: catalogue
+      state: started
+      enabled: yes
 
      
 
